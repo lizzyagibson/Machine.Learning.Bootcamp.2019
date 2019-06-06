@@ -1,0 +1,140 @@
+---
+title: "Clustering and PCA"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+setwd("~/Dropbox/Teaching/")
+```
+
+```{r, echo = T, message = FALSE, results='hide', warning=FALSE}
+library(ISLR)
+library(factoextra)
+library(gridExtra)
+library(corrplot)
+library(RColorBrewer) 
+library(gplots)
+```
+
+The dataset we use contains data on 166 first generation Pokemon, including their names and basic stats: HP, Attack, Defense, Special Attack, Special Defense, and Speed. The data is from Kaggle (https://www.kaggle.com/abcsds/pokemon). We will apply unsupervised learning methods on this data. The list of Pokemon can be found at (https://pokemondb.net/pokedex/national).
+
+
+```{r}
+dat <- read.csv("Pokemon.csv")
+dat1 <- dat[,2:7]
+dat1 <- scale(dat1)
+rownames(dat1) <- dat[,1]
+```
+
+# K means clustering
+
+Partitioning methods such as k-means clustering require the users to specify the number of clusters to be generated. The function `fviz_nbclust()` determines and visualizes the optimal number of clusters using different methods: within cluster sums of squares, average silhouette and gap statistics. We use average silhouette, and the greater the silhouette value the better.
+
+```{r, fig.height=3.5}
+fviz_nbclust(dat1,
+             FUNcluster = kmeans,
+             method = "silhouette")
+set.seed(1)
+km <- kmeans(dat1, centers = 2, nstart = 20)
+```
+
+The function `fviz_cluster()` provides ggplot2-based visualization of partitioning methods including K means. Observations are represented by points in the plot, using principal components if $p > 2$. An ellipse is drawn around each cluster.
+
+```{r}
+km_vis <- fviz_cluster(list(data = dat1, cluster = km$cluster), 
+                       ellipse.type = "convex", 
+                       geom = c("point","text"),
+                       labelsize = 5, 
+                       palette = "Dark2") + labs(title = "K-means") 
+
+km_vis
+```
+
+# Hierarchical clustering
+
+We can also apply hierarchical clustering on this data. Here we use the Euclidean distance and different types of linkage.
+
+```{r}
+hc.complete <- hclust(dist(dat1), method = "complete")
+hc.average <- hclust(dist(dat1), method = "average")
+hc.single <- hclust(dist(dat1), method = "single")
+hc.centroid <- hclust(dist(dat1), method = "centroid")
+```
+
+The function `fviz_dend()` can be applied to visualize the dendrogram.
+
+```{r, fig.width=7}
+fviz_dend(hc.complete, k = 4,        
+          cex = 0.3, 
+          palette = "jco", 
+          color_labels_by_k = TRUE,
+          rect = TRUE, rect_fill = TRUE, rect_border = "jco",
+          labels_track_height = 2.5)
+
+ind4.complete <- cutree(hc.complete, 4)
+
+# Who are in the fourth cluster?
+dat[ind4.complete == 4,]
+```
+
+To display more details, we show the heatmap of the data.
+
+```{r, fig.width = 12, fig.height=7}
+#display.brewer.all(n=NULL, type="all", select=NULL, exact.n=TRUE)
+col1 <- colorRampPalette(brewer.pal(9, "GnBu"))(100)
+col2 <- colorRampPalette(brewer.pal(3, "Spectral"))(2)
+
+heatmap.2(t(dat1), 
+          col = col1, keysize=.8, key.par = list(cex=.5),
+          trace = "none", key = TRUE, cexCol = 0.75, 
+          labCol = as.character(dat[,1]),
+          ColSideColors = col2[as.numeric(dat[,"Legendary"])+1],
+          margins = c(10, 10))
+```
+
+# PCA
+
+The function `prcomp()` can be used to perform PCA.
+
+```{r, fig.height=3}
+pca <- prcomp(dat1)
+pca$rotation
+pca$sdev
+
+var <- get_pca_var(pca)
+corrplot(var$cor)
+```
+
+The function `fviz_eig()` plots the eigenvalues/variances against the number of dimensions. 
+
+```{r, fig.height=4}
+fviz_eig(pca, addlabels = TRUE)
+```
+
+The function `fviz_contrib()` can be used to visualize the contribution of variables from the results of PCA.
+
+```{r}
+a <- fviz_contrib(pca, choice = "var", axes = 1)
+b <- fviz_contrib(pca, choice = "var", axes = 2)
+grid.arrange(a, b, nrow = 2)
+```
+
+The function `fviz_pca_biplot()` can be used to obtain the biplot of individuals and variables.
+
+```{r, fig.height=4}
+fviz_pca_biplot(pca, axes = c(1,2),
+                habillage = ifelse(dat$Legendary==TRUE, "Legendary","Not legendary"),
+                label = c("var"),
+                addEllipses = TRUE) 
+
+fviz_pca_var(pca, col.var = "steelblue", repel = TRUE)
+fviz_pca_ind(pca,
+             habillage = ifelse(dat$Legendary==TRUE,"Legendary","Not legendary"),
+             label = "none",
+             addEllipses = TRUE)
+```
