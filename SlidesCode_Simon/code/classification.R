@@ -4,7 +4,7 @@ library(class)
 
 set.seed(10)
 
-dat.infarc <- read.table("infarc-data/infarcts.txt", header = T)
+dat.infarc <- read.table("./SlidesCode_Simon/code/infarc-data/infarcts.txt", header = T)
 
 dat.infarc.use <- dat.infarc %>% 
   select(infarcts, age, educ, income, weight, height, packyrs, alcoh, chd, claud, htn, diabetes, ldl, crt) %>% 

@@ -36,7 +36,7 @@ setwd("/Users/cc3780/Desktop")
 
 # Read CSV files: "Pokemon.csv"
 
-pokemon<-read.csv("O:\\Projects\\BERD_EDU\\MiniCourses\\MLWorkshop\\Slides_Cody\\Pokemon.csv")
+pokemon<-read.csv("./SlidesCode_Chiuzan/RIntro/Pokemon.csv")
 
 # Read R built-in data sets
 

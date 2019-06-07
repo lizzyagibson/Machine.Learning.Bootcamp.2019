@@ -66,7 +66,7 @@ library('caret')
 
 # Read-in data
 
-cancer_reg<-read.csv("O:\\Projects\\BERD_EDU\\MiniCourses\\MLWorkshop\\Slides_Cody\\Penalized\\Cancer_Registry.csv")
+cancer_reg<-read.csv("./SlidesCode_Chiuzan/Penalized Methods/Cancer_Registry.csv")
             
 names(cancer_reg)
 

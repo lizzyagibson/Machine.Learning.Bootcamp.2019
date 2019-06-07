@@ -5,7 +5,7 @@ library(randomForest)
 library(ranger)
 library(gbm)
 
-dat <- read.csv("Cancer_Registry.csv")
+dat <- read.csv("./SlidesCode_Simon/code/Cancer_Registry.csv")
 dat <- dat %>% select(-PctSomeCol18_24, -PctEmployed16_Over, -PctPrivateCoverageAlone)
 colnames(dat)
 hist(dat$TARGET_deathRate)
@@ -89,7 +89,7 @@ preds.gbm.3 <- predict(fit.gbm.3, dat.test, ntree = best.fit.gbm.3)
 library(pROC)
 set.seed(10)
 
-dat.infarc <- read.table("infarc-data/infarcts.txt", header = T)
+dat.infarc <- read.table("./SlidesCode_Simon/code/infarc-data/infarcts.txt", header = T)
 
 dat.infarc.use <- dat.infarc %>% 
   select(infarcts, age, educ, income, weight, height, packyrs, alcoh,
