@@ -1,11 +1,11 @@
 # Machine.Learning.Bootcamp.2019
-SHARP (Skills for Health And Research Professionals) Training Program, Mailman School of Public Health, Columbia University
+SHARP (Skills for Health And Research Professionals) Training Program, Mailman School of Public Health, Columbia University.
 
 June 2019.
 
 The Machine Learning Boot Camp was a two-day intensive boot camp of seminars combined with hands-on R sessions to provide an overview of concepts, techniques, and data analysis methods with applications in biomedical research.
 
-Please open 'ML Bootcamp.Rproj' first. This ensures that the R session's working directory is the Machine Learning repo, which allows the use of relative file paths.
+**Please open 'ML Bootcamp.Rproj' first. This ensures that the R session's working directory is the Machine Learning repo, which allows the use of relative file paths.**
 
 Instructors:
 
