@@ -11,8 +11,11 @@ knitr::opts_chunk$set(echo = TRUE)
 library(ISLR)
 library(caret)
 library(ranger)
+#install.packages("plotmo")
 library(plotmo)
+#install.packages("pdp")
 library(pdp)
+#install.packages("lime")
 library(lime)
 ```
 
