@@ -29,7 +29,7 @@ Topics:
     * MARS and EARTH
 * Classification Models
     * Logistic Regression
-    * Support Vector Machines (SVM)
+    * Support Vector Machines
     *	Validation and Calibration
 * Tree Based Methods
     * Decision/Regression Trees
@@ -43,5 +43,5 @@ Topics:
 * Principal Components
     *	PCA
     *	Principal component regression and partial least squares
-* Deep Learning (Lecture)
+* Deep Learning
     *	Pros/Cons of Popular Approaches (e.g., neural, convolutional, recurrent networks)
