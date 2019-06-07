@@ -1,8 +1,11 @@
 library(dplyr)
 library(rpart)
+install.packages("rpart.plot")
 library(rpart.plot)
+#install.packages("randomForest")
 library(randomForest)
 library(ranger)
+#install.packages("gbm")
 library(gbm)
 
 dat <- read.csv("./SlidesCode_Simon/code/Cancer_Registry.csv")

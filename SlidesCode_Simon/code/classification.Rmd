@@ -19,7 +19,7 @@ We first select a subset of features to use in our predictive model:
 ```{r, echo = TRUE}
 set.seed(10)
 
-dat.infarc <- read.table("infarc-data/infarcts.txt", header = T)
+dat.infarc <- read.table("./SlidesCode_Simon/code/infarc-data/infarcts.txt", header = T)
 
 dat.infarc.use <- dat.infarc %>% 
   select(infarcts, age, educ, income, weight, height, packyrs, alcoh, 

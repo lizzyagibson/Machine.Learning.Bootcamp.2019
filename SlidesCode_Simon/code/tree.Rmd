@@ -21,7 +21,7 @@ Here we use the cancer registry data, and the infarct data that we considered in
 We first read in the cancer registry data
 
 ```{r}
-dat <- read.csv("Cancer_Registry.csv")
+dat <- read.csv("./SlidesCode_Simon/code/Cancer_Registry.csv")
 dat <- dat %>% select(-PctSomeCol18_24, -PctEmployed16_Over, -PctPrivateCoverageAlone)
 
 train.ind <- sample(1:nrow(dat), floor(nrow(dat)/2))
