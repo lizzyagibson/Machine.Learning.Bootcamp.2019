@@ -9,9 +9,9 @@ Please open 'ML Bootcamp.Rproj' first. This ensures that the R session's working
 
 Instructors:
 
-Noah Simon, PhD, Department of Biostatistics, School of Public Health, University of Washington. 
-Yifei Sun, PhD, Department of Biostatistics, Mailman School of Public Health, Columbia University.
-Cody Chiuzan, PhD, Department of Biostatistics, Mailman School of Public Health, Columbia University.
+* Noah Simon, PhD, Department of Biostatistics, School of Public Health, University of Washington. 
+* Yifei Sun, PhD, Department of Biostatistics, Mailman School of Public Health, Columbia University.
+* Cody Chiuzan, PhD, Department of Biostatistics, Mailman School of Public Health, Columbia University.
 
 Topics:
 
