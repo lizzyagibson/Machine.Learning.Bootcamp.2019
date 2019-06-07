@@ -25,7 +25,7 @@ The dataset we use contains data on 166 first generation Pokemon, including thei
 
 
 ```{r}
-dat <- read.csv("Pokemon.csv")
+dat <- read.csv("./SlidesCode_Yifei/Pokemon.csv")
 dat1 <- dat[,2:7]
 dat1 <- scale(dat1)
 rownames(dat1) <- dat[,1]

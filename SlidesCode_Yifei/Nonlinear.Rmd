@@ -13,10 +13,12 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r, echo = T, message = FALSE, results='hide', warning=FALSE}
 library(caret) 
 library(splines)
+#install.packages("lasso2")
 library(lasso2) 
 library(mgcv)
 library(ggplot2)
 library(pdp)
+#install.packages("earth")
 library(earth)
 ```
 
